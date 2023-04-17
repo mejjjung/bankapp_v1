@@ -9,4 +9,5 @@
 	      <h5>Title description, Dec 7, 2017</h5>
 	      <br>
 	    </div>
+	    
  <%@ include file="/WEB-INF/view/layout/footer.jsp" %>
