@@ -9,7 +9,7 @@
 		<form action="/user/sign-in" method="post">
 			<div class="form-group">
 				<label for=username>User name:</label> 
-				<input type="text" class="form-control" placeholder="Enter username" id="username" name="username" value="미정">
+				<input type="text" class="form-control" placeholder="Enter username" id="username" name="username" value="길동">
 			</div>
 
 			<div class="form-group">
