@@ -1,8 +1,12 @@
 package com.tenco.bank.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tenco.bank.handler.exception.CustomPageException;
+import com.tenco.bank.handler.exception.CustomRestfullException;
 
 @Controller
 @RequestMapping("/account")
@@ -23,9 +27,13 @@ public class AccountController {
 	 */
 
 	@GetMapping({"/list","/"}) // 다중으로 설정 하려면 {}
-	public String list() {
+	public void list() {
 		
-		return "/account/list";
+		// todo 예외 테스트 - 삭제 예정
+//		throw new CustomRestfullException("인증되지 않은 사용자 입니다.", HttpStatus.UNAUTHORIZED);
+		throw new CustomPageException("페이지를 찾을 수 없습니다", HttpStatus.NOT_FOUND);
+		
+//		return "/account/list";
 	}
 	
 	// 출금 페이지

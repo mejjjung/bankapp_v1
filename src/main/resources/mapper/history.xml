@@ -11,7 +11,7 @@
 
 	<update id="updateById"
 		parameterType="com.tenco.bank.repository.model.History">
-		update history_tb set amount = #{amount}, w_balance = #{wBalance},d_balace = #{dBalance},
+		update history_tb set amount = #{amount}, w_balance = #{wBalance},d_balance = #{dBalance},
 		w_account_id = #{wAccountId},d_account_id = #{dAccountId} where id = #{id}
 	</update>
 
