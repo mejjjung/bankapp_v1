@@ -30,8 +30,8 @@ public class AccountController {
 	public void list() {
 		
 		// todo 예외 테스트 - 삭제 예정
-//		throw new CustomRestfullException("인증되지 않은 사용자 입니다.", HttpStatus.UNAUTHORIZED);
-		throw new CustomPageException("페이지를 찾을 수 없습니다", HttpStatus.NOT_FOUND);
+		throw new CustomRestfullException("인증되지 않은 사용자 입니다.", HttpStatus.UNAUTHORIZED);
+//		throw new CustomPageException("페이지를 찾을 수 없습니다", HttpStatus.NOT_FOUND);
 		
 //		return "/account/list";
 	}
