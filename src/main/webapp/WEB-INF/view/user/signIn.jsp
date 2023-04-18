@@ -9,15 +9,15 @@
 		<form action="/user/sign-in" method="post">
 			<div class="form-group">
 				<label for=username>User name:</label> 
-				<input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
+				<input type="text" class="form-control" placeholder="Enter username" id="username" name="username" value="미정">
 			</div>
 
 			<div class="form-group">
 				<label for="password">Password:</label> 
-				<input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+				<input type="password" class="form-control" placeholder="Enter password" id="password" name="password" value="1234">
 			</div>
 
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">로그인</button>
 		</form>
 	</div>
 	<br>
