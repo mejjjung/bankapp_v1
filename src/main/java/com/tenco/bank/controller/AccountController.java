@@ -3,22 +3,27 @@ package com.tenco.bank.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tenco.bank.dto.DepositFormDto;
 import com.tenco.bank.dto.SaveFormDto;
 import com.tenco.bank.dto.TransferFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
+import com.tenco.bank.dto.response.HistoryDto;
 import com.tenco.bank.handler.exception.CustomRestfullException;
 import com.tenco.bank.handler.exception.UnAuthorizedExcetion;
 import com.tenco.bank.repository.model.Account;
+import com.tenco.bank.repository.model.History;
 import com.tenco.bank.repository.model.User;
 import com.tenco.bank.service.AccountService;
 import com.tenco.bank.utils.Define;
@@ -226,8 +231,23 @@ public class AccountController {
 	}
 	
 	// 계좌 상세 보기 페이지
-	@GetMapping("/detail")
-	public String detail() {
-		return "";
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable Integer id, @RequestParam(name = "type", defaultValue = "all", required = false) String type,  Model model) {
+		User principal = (User)session.getAttribute(Define.PRINCIPAL);
+		if(session.getAttribute(Define.PRINCIPAL) == null) {
+			throw new UnAuthorizedExcetion("로그인 먼저 해주세요", HttpStatus.BAD_REQUEST);
+		}
+		
+		// 화면을 구성하기 위해 필요한 데이터
+		// 소유자 이름
+		// 계좌 번호(1개), 계좌 잔액
+		// 거래 내역 
+		Account account = accountService.readAccount(id);
+		List<HistoryDto> historyList = accountService.readHistoryByAccount(type, id);
+		model.addAttribute("principal",principal);
+		model.addAttribute("account", account);
+		model.addAttribute("historyList",historyList);
+		
+		return "/account/detail";
 	}
 }
