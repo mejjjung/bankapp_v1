@@ -79,6 +79,5 @@
 			on h.w_account_id = wa.id
 			where h.d_account_id =  #{id} or h.w_account_id =  #{id};
 		</if>
-
 	</select>
 </mapper>
