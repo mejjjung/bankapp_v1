@@ -3,6 +3,7 @@ package com.tenco.bank.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.tenco.bank.handler.AuthInterceptor;
@@ -20,5 +21,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		
 		// 인터셉터 등록
 //		registry.addInterceptor(new AuthInterceptor()); // 2. 인터셉터 추가 방법
+	}
+	
+	// 리소스 등록 처리
+	// 컴퓨터에 위치한 Resouce를 활용하는 방법(프로젝트 외부 폴더 접근 방법)
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/images/uploads/**").addResourceLocations("file:///C:\\spring_upload\\bank\\upload/");
 	}
 }
